@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+
+<html lang="ru">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/phonecode.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'assets/js/slick.min.js' %}"></script>
+        <script src="{% static 'assets/js/common.js' %}"></script>
+        <script src="{% static 'assets/js/jquery-ui-1.10.4.custom.min.js' %}"></script>
+	    <script src="{% static 'assets/js/counties.js' %}"></script>
+	    <script src="{% static 'assets/js/phonecode.js' %}"></script>
+    </head>
+
+    <body>
+        {% include 'app_users/login_modal.html' %}
+        {% include 'app_users/header.html' %}
+
+
+        {% block middle %}
+        {% endblock middle %}
+
+        {% include 'app_users/footer.html' %}
+
+
+        <script src="{% static 'assets/js/login_popup.js' %}"> </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+{% load static %}
+{% load i18n %}
+
+
+<div class="index-first-block">
+    <div class="wrap">
+
+        <h1>{{ company_settings.company }}</h1>
+        <div class="top-text">{{ company_settings.slogan }}</div>
+
+        <form action="#" method="get">
+            <input type="text" placeholder="{% trans 'введите запрос, что нужно сделать, для поиска исполнителя' %}">
+            <button></button>
+            <a href="#" class="sound"></a>
+        </form>
+
+        <div class="blocks">
+            <span>{% trans 'или' %}</span>
+            <span>
+                <img src="{% static 'assets/img/first-block1.svg' %}"> <a href="#">{% trans 'создать заказ' %}</a>
+            </span>
+            <span>
+                <img src="{% static 'assets/img/first-block2.svg' %}"> <a href="#">{% trans 'объявить конкурс' %}</a>
+            </span>
+            <span>
+                <img src="{% static 'assets/img/first-block3.svg' %}"> <a href="#">{% trans 'найти заказ' %}</a>
+            </span>
+        </div>
+    </div>
+</div>

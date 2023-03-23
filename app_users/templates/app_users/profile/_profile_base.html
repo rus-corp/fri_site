@@ -1,0 +1,84 @@
+{% extends 'app_users/_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block middle %}
+    <div class="cabinet-page">
+        <div class="wrap flex">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'balance' %}" {% if current_elem == 'balance' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu1.svg' %}"> {% trans 'Баланс' %}
+                            <span>{{ request.user.balance }}</span> Р
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'topup_withdrawal' %}" {% if current_elem == 'topup_withdrawal' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu2.svg' %}"> {% trans 'Пополнение / Вывод' %}
+                        </a>
+                    </li>
+                    <div class="line"></div>
+                    <li>
+                        <a href="{% url 'portfolio_best' %}" {% if current_elem == 'portfolio' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu3.svg' %}"> {% trans 'Портфолио' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contracts' %}" {% if current_elem == 'contracts' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu4.svg' %}"> {% trans 'Заказы' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contests' %}" {% if current_elem == 'contests' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu5.svg' %}"> {% trans 'Конкурсы' %}
+                        </a>
+                    </li>
+                    <div class="line"></div>
+                    <li>
+                        <a href="{% url 'place_contract' %}" {% if current_elem == 'place_contract' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu6.svg' %}"> {% trans 'Разместить заказ' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'announce_contest' %}" {% if current_elem == 'announce_contest' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu7.svg' %}"> {% trans 'Объявить конкурс' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'search_contractor' %}" {% if current_elem == 'search_contractor' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu8.svg' %}"> {% trans 'Поиск исполнителя' %}
+                        </a>
+                    </li>
+                    <div class="line"></div>
+                    <li>
+                        <a href="{% url 'chat' %}" {% if current_elem == 'chat' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu9.svg' %}"> {% trans 'Чат' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'support' %}" {% if current_elem == 'support' %}class="active"{% endif %}>
+                            <img src="{% static 'assets/img/menu10.svg' %}"> {% trans 'Помощь' %}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="cabinet-content">
+                <div class="navi">
+                    {% for name, link in breadcrumbs.items %}
+                        {% if current_elem == link %}
+                            <a>{{ name }}</a> /
+                        {% else %}
+                            <a href="{% url link %}">{{ name }}</a> /
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

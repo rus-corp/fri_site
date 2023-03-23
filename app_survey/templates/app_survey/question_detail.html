@@ -1,0 +1,32 @@
+{% extends 'app_users/profile/_profile_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+    <form class="vote" action="{% url 'polls-vote' object.id %}" method="post">
+        {% csrf_token %}
+        <div class="date">
+            <div>{% trans 'Начало' %}: {{ object.pub_date|date }}</div>
+            {% if object.is_finished %}
+                <div>{% trans 'Завершён' %}</div>
+            {% else %}
+                <div>{% trans 'Окончание' %}: {{ object.end_date }}</div>
+            {% endif %}
+        </div>
+        <div class="name">
+            {{ object.title }}
+        </div>
+        <div class="vote-text">{{ object.text|linebreaks }}</div>
+        <div class="item">
+            {% for choice in object.choice_set.all %}
+                <input class="radio" type="radio" name="choice" id="choice{{ forloop.counter }}"
+                       value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.text }}</label>
+            {% endfor %}
+
+        </div>
+        <input type="submit" value="{% trans 'Проголосовать' %}">
+    </form>
+
+{% endblock %}

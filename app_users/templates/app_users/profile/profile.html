@@ -1,0 +1,21 @@
+{% extends 'app_users/profile/_profile_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <h1>{{ user.last_name }} {{ user.first_name }} {{ user.patronymic }}</h1>
+        <h2>{{ user.get_status_display }}{% if user.is_core %} ({% trans "Основатель" %}){% endif %}</h2>
+        <a href="{% url 'edit_profile' %}">{% trans 'Редактировать профиль' %}</a>
+    </div>
+    <div>
+        {% if user.avatar %}
+            <div><img src="{{ user.avatar.url }}" alt="card.jpg"/></div>
+        {% else %}
+            <div>
+                <img src="{% static 'assets/img/no_img.jpg' %}" alt="profile-image.jpg"/>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
