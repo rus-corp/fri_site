@@ -44,16 +44,16 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'mptt',
     'django_mptt_admin',
-    'django_celery_beat',  # планировщик задач
+    'django_celery_beat',                                        # планировщик задач
 
-    'app_users.apps.AppUsersConfig',
-    'app_ads.apps.AppAdsConfig',
-    'app_static_pages.apps.AppStaticPagesConfig',
-    'app_settings.apps.AppSettingsConfig',
-    'app_survey.apps.AppSurveyConfig',
-    'app_news.apps.AppNewsConfig',
-    'app_personal_account.apps.AppPersonalAccountConfig',
-    'app_referral_program.apps.AppReferralProgramConfig',
+    'app_users.apps.AppUsersConfig',                             #целиковый аккаунт пользователя
+    'app_ads.apps.AppAdsConfig',                                 #объявления
+    'app_static_pages.apps.AppStaticPagesConfig',                #загрузка доков в бд для редактирования
+    'app_settings.apps.AppSettingsConfig',                       #добавление соцсетей и компаний
+    'app_survey.apps.AppSurveyConfig',                           #голосование
+    'app_news.apps.AppNewsConfig',                               #раздел новости
+    'app_personal_account.apps.AppPersonalAccountConfig',        #пополнение лиц.счета
+    'app_referral_program.apps.AppReferralProgramConfig',        #рефералка
     'app_tickets.apps.AppTicketsConfig',
     'app_portfolio.apps.AppPortfolioConfig',
 
