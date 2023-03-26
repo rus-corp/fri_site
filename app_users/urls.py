@@ -34,5 +34,4 @@ urlpatterns = [
     path('profile/search_contractor/', search_contractor, name='search_contractor'),
     path('profile/chat/', chat, name='chat'),
     path('profile/support/', support, name='support'),
-
 ]

@@ -30,12 +30,11 @@
 
         <!--    ФОРМА ОБРАТНОЙ СВЯЗИ begin  -->
         <!--    пока не работает  -->
-        <form action="#" method="post">
+        <form method="post">
             {% csrf_token %}
+            
             <p>{% trans 'ФОРМА ОБРАТНОЙ СВЯЗИ' %}</p>
-            <input name="name" type="text" placeholder="{% trans 'Введите имя' %}">
-            <input name="email" type="text" placeholder="{% trans 'Ваш E-mail' %}">
-            <textarea name="message" placeholder="{% trans 'Ваше сообщение' %}"></textarea>
+            {{ form.as_p }}
             <button type="submit">{% trans 'Отправить' %}</button>
         </form>
         <!--    ФОРМА ОБРАТНОЙ СВЯЗИ finish  -->

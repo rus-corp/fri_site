@@ -28,23 +28,30 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
 
     email = models.EmailField(_('email'), unique=True, db_index=True)
     email_confirmed = models.BooleanField(_('email подтвержден'), default=False)
+    
     username = models.SlugField(max_length=55, db_index=True, unique=True, verbose_name=_('имя пользователя'), null=True, blank=True)
     last_name = models.CharField(_('Фамилия'), max_length=55, blank=True, db_index=True)
     first_name = models.CharField(_('Имя'), max_length=55, blank=True, db_index=True)
     patronymic = models.CharField(_('Отчество'), max_length=55, blank=True, db_index=True)
+    
     country = models.CharField(_('Страна'), max_length=55, blank=True, db_index=True)
     address = models.CharField(_('Адрес'), max_length=255, blank=True, db_index=True)
+    
     personal_number = models.CharField(_('ИНН или персональный номер'), max_length=17, blank=True, null=True, db_index=True)
     document = models.FileField(_('документ'), upload_to='documents/', blank=True, validators=[document_validator, document_size_validate])
     document_number = models.CharField(_('Серия и номер документа'), max_length=55, blank=True, db_index=True)
     document_issued = models.CharField(_('Когда и кем выдан'), max_length=255, blank=True, db_index=True)
+    
     paid_entrance_fee = models.BooleanField(_('Оплатил вступительный взнос'), default=False)
+    
     status = models.CharField(_('статус'), max_length=30, choices=STATUS_CHOICES, default="0", db_index=True)
     date_joined = models.DateTimeField(_('дата регистрации'), auto_now_add=True, db_index=True)
     is_active = models.BooleanField(_('является активным'), default=True)
+    
     is_staff = models.BooleanField(default=False, verbose_name=_('является сотрудником'))
     is_core = models.BooleanField(default=False, verbose_name=_('основатель'), db_index=True)
     on_vacation = models.BooleanField(default=False, verbose_name=_('в отпуске'), db_index=True)
+    
     parent = TreeForeignKey('self', on_delete=models.PROTECT, null=True, blank=True, related_name='children',
                             db_index=True, verbose_name=_('родитель'))
 

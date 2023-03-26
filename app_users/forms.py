@@ -160,3 +160,10 @@ class PasswordSetForm(SetPasswordForm):
                                         'autocomplete': 'new-password',
                                         'maxlength': '150'
                                     }))
+
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Введите ваше имя', max_length=250)
+    email = forms.EmailField(label='E-mail')
+    message = forms.CharField(widget=forms.Textarea(attrs={'cols': 100, 'rows': 2}))
