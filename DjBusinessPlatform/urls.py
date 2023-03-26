@@ -28,6 +28,7 @@ urlpatterns = [
     path("referral/", include("app_referral_program.urls")),  # Реферальная программа
     path("tickets/", include("app_tickets.urls")),  # Тикеты
     path("", include("app_portfolio.urls")),  # Портфолио
+    path('captcha/', include('captcha.urls')),
 
 ]
 

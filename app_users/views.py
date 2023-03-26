@@ -15,20 +15,26 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views import generic
 from django.views.generic import TemplateView, UpdateView
+from django.views.generic.edit import FormView
 
-from .forms import CustomUserCreationForm, PasswordSetForm, CustomUserChangeForm, ResetPasswordForm
+from .forms import CustomUserCreationForm, PasswordSetForm, CustomUserChangeForm, ResetPasswordForm, ContactForm
 from .utils import send_email_for_verify, get_referrer
 
 User = get_user_model()
 
 
-class IndexView(TemplateView):
+class IndexView(TemplateView, FormView):
+    form_class = ContactForm
     template_name = 'app_users/home.html'
     extra_context = {'title': _('Главная страница'), 'current_elem': 'home'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return redirect('home')
 
 
 # Регистрирует кандидатов во фрилансеры по реф. ссылке. НЕ ИСПОЛЬЗОВАТЬ для регистрации заказчиков.
@@ -369,3 +375,4 @@ def shareholders_book(request):
         'app_users/others/shareholders_book.html',
         context=context
     )
+

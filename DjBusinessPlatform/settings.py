@@ -42,24 +42,27 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
     'mptt',
     'django_mptt_admin',
-    'django_celery_beat',  # планировщик задач
+    'django_celery_beat',                                        # планировщик задач
 
-    'app_users.apps.AppUsersConfig',
-    'app_ads.apps.AppAdsConfig',
-    'app_static_pages.apps.AppStaticPagesConfig',
-    'app_settings.apps.AppSettingsConfig',
-    'app_survey.apps.AppSurveyConfig',
-    'app_news.apps.AppNewsConfig',
-    'app_personal_account.apps.AppPersonalAccountConfig',
-    'app_referral_program.apps.AppReferralProgramConfig',
+    'app_users.apps.AppUsersConfig',                             #целиковый аккаунт пользователя
+    'app_ads.apps.AppAdsConfig',                                 #объявления
+    'app_static_pages.apps.AppStaticPagesConfig',                #загрузка доков в бд для редактирования
+    'app_settings.apps.AppSettingsConfig',                       #добавление соцсетей и компаний
+    'app_survey.apps.AppSurveyConfig',                           #голосование
+    'app_news.apps.AppNewsConfig',                               #раздел новости
+    'app_personal_account.apps.AppPersonalAccountConfig',        #пополнение лиц.счета
+    'app_referral_program.apps.AppReferralProgramConfig',        #рефералка
     'app_tickets.apps.AppTicketsConfig',
     'app_portfolio.apps.AppPortfolioConfig',
 
 ]
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # планировщик задач
 SITE_ID = 1  # это нужно для корректной работы flatpages.
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_FOREGROUND_COLOR = 'blue'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -105,7 +108,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fl',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '2909',
         'HOST': 'localhost',
         'PORT': '5432',
     }
