@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
     'mptt',
     'django_mptt_admin',
     'django_celery_beat',                                        # планировщик задач
@@ -60,6 +61,8 @@ INSTALLED_APPS = [
 ]
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # планировщик задач
 SITE_ID = 1  # это нужно для корректной работы flatpages.
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_FOREGROUND_COLOR = 'blue'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

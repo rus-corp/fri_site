@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
     SetPasswordForm
 from django.core.validators import validate_slug, validate_email
 from django.utils.translation import gettext_lazy as _
+from captcha.fields import CaptchaField
 
 User = get_user_model()
 
@@ -167,3 +168,4 @@ class ContactForm(forms.Form):
     name = forms.CharField(label='Введите ваше имя', max_length=250)
     email = forms.EmailField(label='E-mail')
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 100, 'rows': 2}))
+    captcha = CaptchaField(label='Are you a human?')
