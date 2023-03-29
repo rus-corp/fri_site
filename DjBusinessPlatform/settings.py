@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'app_tickets.apps.AppTicketsConfig',
     'app_portfolio.apps.AppPortfolioConfig',
     'app_accounts.apps.AppAccountsConfig',
+    'app_categories.apps.AppCategoriesConfig',
 
 ]
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # планировщик задач
