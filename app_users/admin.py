@@ -25,19 +25,20 @@ class CustomUserAdmin(admin.ModelAdmin):  # чтобы в админке ото�
 
     def paid_entrance_fee(self, request, queryset):
         queryset.update(paid_entrance_fee=True)
-        Operation.objects.create(purpose_of_payment='оплата вступления', summ=2000,
-                                 from_account=Fund.objects.get(name='Вступительные взносы').account,
-                                 to_account=context['user'].acc)
-        Operation.objects.create(purpose_of_payment='вступительный взнос', summ=1999, from_account=context['user'].acc,
-                                 to_account=Fund.objects.get(name='Вступительный фонд').account)
-        Operation.objects.create(purpose_of_payment='паевой взнос', summ=1, from_account=context['user'].acc,
-                                 to_account=Fund.objects.get(name='Паевой фонд').account)
-        Operation.objects.create(purpose_of_payment='паевой взнос', summ=999,
-                                 from_account=Fund.objects.get(name='Вступительный фонд').account,
-                                 to_account=Fund.objects.get(name='Фонд развития').account)
-        Operation.objects.create(purpose_of_payment='паевой взнос', summ=1000,
-                                 from_account=Fund.objects.get(name='Вступительный фонд').account,
-                                 to_account=Fund.objects.get(name='Фонд потребления').account)
+        for r_user in queryset:
+            Operation.objects.create(purpose_of_payment='оплата вступления', summ=2000,
+                                     from_account=Fund.objects.get(name='Вступительные взносы').account,
+                                     to_account=r_user.acc)
+            Operation.objects.create(purpose_of_payment='вступительный взнос', summ=1999, from_account=r_user.acc,
+                                     to_account=Fund.objects.get(name='Вступительный фонд').account)
+            Operation.objects.create(purpose_of_payment='паевой взнос', summ=1, from_account=r_user.acc,
+                                     to_account=Fund.objects.get(name='Паевой фонд').account)
+            Operation.objects.create(purpose_of_payment='паевой взнос', summ=999,
+                                     from_account=Fund.objects.get(name='Вступительный фонд').account,
+                                     to_account=Fund.objects.get(name='Фонд развития').account)
+            Operation.objects.create(purpose_of_payment='паевой взнос', summ=1000,
+                                     from_account=Fund.objects.get(name='Вступительный фонд').account,
+                                     to_account=Fund.objects.get(name='Фонд потребления').account)
     paid_entrance_fee.short_description = _('Оплатил вступительный взнос')
 
 
