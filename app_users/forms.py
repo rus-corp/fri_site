@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm, \
-    SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm, SetPasswordForm
 from django.core.validators import validate_slug, validate_email
 from django.utils.translation import gettext_lazy as _
 from captcha.fields import CaptchaField

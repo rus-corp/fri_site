@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'app_referral_program.apps.AppReferralProgramConfig',        #рефералка
     'app_tickets.apps.AppTicketsConfig',
     'app_portfolio.apps.AppPortfolioConfig',
+    'app_accounts.apps.AppAccountsConfig',
 
 ]
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # планировщик задач
