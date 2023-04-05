@@ -1,0 +1,20 @@
+{% extends 'app_users/_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load flatpages %}
+{% get_flatpages '/about-platform/' as about_platform %}
+
+{% block middle %}
+<div class="category">
+{% for x in serialized_data %}
+{{x}}
+{% endfor %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}
