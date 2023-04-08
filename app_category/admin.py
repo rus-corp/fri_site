@@ -7,13 +7,16 @@ from .models import Activity, Categoryes, Specialization
 
 class ActivityAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
+    prepopulated_fields = {"slug": ("name",)}
 
 
 class CategoryesAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'activity']
+    prepopulated_fields = {"slug": ("name",)}
 
 class SpecializationAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'category']
+    prepopulated_fields = {"slug": ("name",)}
 
 
 

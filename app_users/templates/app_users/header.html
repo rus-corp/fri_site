@@ -34,8 +34,8 @@
         <a class="menu-button"></a>
         <ul>
             <li><a href="{% url 'home' %}">{% trans "ГЛАВНАЯ" %}</a></li>
-            <li><a href="">{% trans "КАТЕГОРИИ" %}</a></li>
-            <li><a href="#">{% trans "ЗАКАЗЫ" %}</a></li>
+            <li><a href="{% url 'categories-main' %}">{% trans "КАТЕГОРИИ" %}</a></li>
+            <li><a href="{% url 'orders' %}">{% trans "ЗАКАЗЫ" %}</a></li>
             <li><a href="#">{% trans "СОЗДАТЬ ЗАКАЗ" %}</a></li>
             <li><a href="#">{% trans "КОНКУРСЫ" %}</a></li>
             <li><a href="#">{% trans "ОБЪЯВИТЬ КОНКУРС" %}</a></li>

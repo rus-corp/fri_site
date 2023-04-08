@@ -1,0 +1,17 @@
+{% extends 'app_users/_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load flatpages %}
+{% get_flatpages '/about-platform/' as about_platform %}
+
+{% block middle %}
+
+<form action="{% url 'create-order' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Разместить заказ</button>
+</form>
+
+
+
+{% endblock %}

@@ -1,9 +1,11 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
 class Activity(models.Model):
     name = models.CharField(max_length=150, )
+    slug = models.SlugField(max_length=55, unique=True, default='')
 
     class Meta:
         verbose_name = 'Сфера деятельности'
@@ -12,10 +14,17 @@ class Activity(models.Model):
     def __str__(self) -> str:
         return self.name
     
+    def get_absolute_url(self):
+        return reverse('categoryes', kwargs={'activity_slug': self.slug})
+
+
+    
+    
 
 class Categoryes(models.Model):
     name = models.CharField(max_length=200)
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='category')
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='categoryes')
+    slug = models.SlugField(max_length=55, unique=True, default='')
 
     class Meta:
         verbose_name = 'Категория'
@@ -27,7 +36,8 @@ class Categoryes(models.Model):
 
 class Specialization(models.Model):
     name = models.CharField(max_length=200)
-    category = models.ForeignKey(Categoryes, on_delete=models.CASCADE, related_name='specialization')
+    category = models.ForeignKey(Categoryes, on_delete=models.CASCADE, related_name='specializations')
+    slug = models.SlugField(max_length=55, unique=True, default='')
 
     class Meta:
         verbose_name = 'Специализации'
@@ -36,3 +46,5 @@ class Specialization(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+
