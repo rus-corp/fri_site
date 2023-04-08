@@ -111,3 +111,6 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
         if all(conditions):
             self.status = '2'
         super().save(*args, **kwargs)
+
+
+

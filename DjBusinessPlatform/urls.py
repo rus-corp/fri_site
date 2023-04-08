@@ -29,7 +29,8 @@ urlpatterns = [
     path("tickets/", include("app_tickets.urls")),  # Тикеты
     path("", include("app_portfolio.urls")),  # Портфолио
     path('captcha/', include('captcha.urls')),
-
+    path('categories/', include('app_category.urls')),
+    path('orders/', include('app_orders.urls'))
 ]
 
 if settings.DEBUG:

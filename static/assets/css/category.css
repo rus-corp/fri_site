@@ -1,0 +1,23 @@
+.category {
+    display: block;
+    width: 1000px;
+    height: 600px;
+}
+
+.activity {
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.categories {
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.specialization {
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+}

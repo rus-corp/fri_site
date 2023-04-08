@@ -1,0 +1,24 @@
+{% extends 'app_users/_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load flatpages %}
+{% get_flatpages '/about-platform/' as about_platform %}
+
+{% block middle %}
+<div class="activity">
+{% for active in activitys %}
+<p><a href="{% url 'activ' active.slug %}">{{active}}</a></p>
+{% endfor %}
+</div>
+<div class="categories">
+{% for category in categorys %}
+<p><a href="{% url 'categ' activity_slug category.slug %}">{{category}}</a></p>
+{% endfor %}
+</div>
+<div class="specialization">
+{% for specialization in specializations %}
+<p><a href="">{{specialization}}</a></p>
+{% endfor %}
+</div>
+
+{% endblock %}
