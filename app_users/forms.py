@@ -162,7 +162,6 @@ class PasswordSetForm(SetPasswordForm):
                                     }))
 
 
-
 class ContactForm(forms.Form):
     name = forms.CharField(label='Введите ваше имя', max_length=250)
     email = forms.EmailField(label='E-mail')

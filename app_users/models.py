@@ -67,7 +67,7 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     bank_correspondent_account = models.CharField(_('Корреспондентский счет банка'), max_length=55, blank=True, null=True)
     payment_account = models.CharField(_('Расчетный счет'), max_length=55, blank=True, null=True)
     recipients_name = models.CharField(_('Имя получателя платежа'), max_length=255, blank=True)
-    acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True)  # счёт в паевом фонде
+    acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True, default=None)  # счёт в паевом фонде
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

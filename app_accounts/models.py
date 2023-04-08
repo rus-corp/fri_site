@@ -6,6 +6,8 @@ from django.utils.translation import gettext_lazy as _
 
 class Account(models.Model):
     account = models.CharField(_('Cчёт'), max_length=55, unique=True)
+    def __str__(self):
+        return self.account
 
     class Meta:
         verbose_name = _('счёт')

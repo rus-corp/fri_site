@@ -26,9 +26,12 @@ class CustomUserAdmin(admin.ModelAdmin):
         'id', 'email', 'last_name', 'first_name', 'patronymic', 'parent__last_name', 'parent__email', 'personal_number')
     readonly_fields = ['date_joined', 'get_referrals', 'referral_url', 'parent', 'balance', 'get_personal_account']
     save_on_top = True
-    actions = ['make_active', 'make_inactive', 'paid_entrance_fee']
+    actions = ['make_active', 'make_inactive', 'paid_entrance_fee', 'deposit_fee']
 
     # inlines = [TransactionInline]
+    def deposit_fee(self, request, queryset):
+        pass
+    deposit_fee.short_description = _('Оплата депозита')
 
     def paid_entrance_fee(self, request, queryset):
         queryset.update(paid_entrance_fee=True)
@@ -57,7 +60,6 @@ class CustomUserAdmin(admin.ModelAdmin):
                                              from_account=Fund.objects.get(name='Фонд потребления').account,
                                              to_account=Fund.objects.get(name='Невостребованные бонусы').account)
                     break
-
     paid_entrance_fee.short_description = _('Оплатил вступительный взнос')
 
     def make_active(self, request, queryset):
