@@ -8,7 +8,7 @@ class Get_referral(models.Model):
     name = models.CharField(_('Имя'), max_length=55, blank=False)
     email = models.EmailField(_('email'), blank=False)
     choice_of_specialty = models.ForeignKey(Specialization, on_delete=models.CASCADE)
-    file1 = models.FileField(upload_to='uploads/', blank=True)
+    file1 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=False)
     file2 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
     file3 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)
     file4 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True)

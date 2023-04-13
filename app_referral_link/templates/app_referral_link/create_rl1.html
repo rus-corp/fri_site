@@ -6,7 +6,7 @@
 
 {% block middle %}
 
-<form action="{% url 'referral_link' %}" method="post">
+<form action="{% url 'referral_link' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Отправить</button>

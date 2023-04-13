@@ -30,7 +30,8 @@ urlpatterns = [
     path("", include("app_portfolio.urls")),  # Портфолио
     path('captcha/', include('captcha.urls')),
     path('categories/', include('app_category.urls')),
-    path('orders/', include('app_orders.urls'))
+    path('orders/', include('app_orders.urls')),
+    path('referral_link/', include('app_referral_link.urls')),
 ]
 
 if settings.DEBUG:
