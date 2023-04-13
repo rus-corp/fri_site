@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+
+
+<div class="popup" id="loginPopup">
+    <div class="window">
+        <a class="close"></a>
+        <form action="{% url 'referral_link' %}" method="post">
+            {% csrf_token %}
+
+
+            <div class="name">
+                {% trans "Получение реферальной ссылки" %}
+            </div>
+
+            <p><label for="{{ form.Get_referral.name }}">Имя</label></p>
+            <input type="text" placeholder="" name="username">
+
+            <p>
+                <label for="{{ form.Get_referral.email }}">
+                    {% trans 'E-mail' %}
+                </label>
+            </p>
+            <div class="field">
+                <input type="email" placeholder="" name="email">
+            </div>
+
+            <button type="submit">{% trans 'Войти' %}</button>
+
+
+        </form>
+    </div>
+</div>
