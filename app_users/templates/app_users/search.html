@@ -17,13 +17,13 @@
         <div class="blocks">
             <span>{% trans 'или' %}</span>
             <span>
-                <img src="{% static 'assets/img/first-block1.svg' %}"> <a href="#">{% trans 'создать заказ' %}</a>
+                <img src="{% static 'assets/img/first-block1.svg' %}"> <a href="{% url 'create-order' %}">{% trans 'создать заказ' %}</a>
             </span>
             <span>
                 <img src="{% static 'assets/img/first-block2.svg' %}"> <a href="#">{% trans 'объявить конкурс' %}</a>
             </span>
             <span>
-                <img src="{% static 'assets/img/first-block3.svg' %}"> <a href="#">{% trans 'найти заказ' %}</a>
+                <img src="{% static 'assets/img/first-block3.svg' %}"> <a href="{% url 'orders' %}">{% trans 'найти заказ' %}</a>
             </span>
         </div>
     </div>

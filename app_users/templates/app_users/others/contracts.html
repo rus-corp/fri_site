@@ -3,5 +3,12 @@
 {% load static %}
 
 {% block content %}
-    Заказы
+{% for order in object_list %}
+<h2>{{order.name}}</h2>
+<p>{{order.description}}</p>
+<h4>{{order.price}}</h4>
+<p>{{order.activity}}</p>
+<p>{{order.category}}</p>
+<p>{{order.specialization}}</p>
+{% endfor %}
 {% endblock %}
