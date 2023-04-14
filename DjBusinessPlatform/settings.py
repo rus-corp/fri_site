@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'app_accounts.apps.AppAccountsConfig', 
     'app_orders.apps.AppOrdersConfig',                           #создание заказа                      
     'app_category.apps.AppCategoryConfig',                       #сферы деятельности, категории, специализации
-
+    'app_referral_link',
 ]
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # планировщик задач
 SITE_ID = 1  # это нужно для корректной работы flatpages.

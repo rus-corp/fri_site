@@ -1,10 +1,6 @@
-{% extends 'app_users/_base.html' %}
-{% load static %}
-{% load i18n %}
-{% load flatpages %}
-{% get_flatpages '/about-platform/' as about_platform %}
 
-{% block middle %}
+
+
 
 <form action="{% url 'referral_link' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -14,4 +10,3 @@
 
 
 
-{% endblock %}
