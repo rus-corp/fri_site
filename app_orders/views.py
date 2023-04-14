@@ -7,11 +7,12 @@ from .forms import CreateOrder
 
 class CreateOrderView(CreateView):
     form_class = CreateOrder
-    template_name = 'app_orders/create_order.html'
+    template_name = 'app_users/others/place_contract.html'
+    success_url = 'home'
 
 
 
 
 class OrdersView(ListView):
     model = Order
-    template_name = 'app_orders/orders.html'
+    template_name = 'app_users/others/contracts.html'

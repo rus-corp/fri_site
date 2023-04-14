@@ -3,5 +3,11 @@
 {% load static %}
 
 {% block content %}
-    Разместить заказ
+<form action="{% url 'create-order' %}" method="post">
+    {% csrf_token %}
+{% for f in form %}
+<p><label class="label-form" for="{{f.id_for_label}}">{{f.label}}: </label>{{f}}</p>
+{% endfor %}
+<button type="submit">Создать заказ</button>
+</form>
 {% endblock %}

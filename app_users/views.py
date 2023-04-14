@@ -17,6 +17,8 @@ from django.views import generic
 from django.views.generic import TemplateView, UpdateView
 from django.views.generic.edit import FormView
 
+from app_users.models import CustomUser
+
 from .forms import CustomUserCreationForm, PasswordSetForm, CustomUserChangeForm, ResetPasswordForm, ContactForm
 from .utils import send_email_for_verify, get_referrer
 
@@ -276,8 +278,12 @@ def announce_contest(request):
 @login_required
 def search_contractor(request):
     context = {
-        'user': request.user, 'title': _('Поиск исполнителя'), 'current_elem': 'search_contractor',
-        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile', _('Поиск исполнителя'): 'search_contractor'}
+        'user': request.user, 
+        'title': _('Поиск исполнителя'), 
+        'current_elem': 'search_contractor',
+        'breadcrumbs': {_('Главная'): 
+        'home', _('Личный кабинет'): 'edit_profile', 
+        _('Поиск исполнителя'): 'search_contractor'}
     }
     return render(
         request,
@@ -376,3 +382,11 @@ def shareholders_book(request):
         context=context
     )
 
+
+#ввыод фрилансеров 
+def get_frelancers(request):
+    frelancers = CustomUser.objects.filter(status = 2)
+    context = {
+        'frelancers': frelancers
+    }
+    return render(request, 'app_users/frelancers.html', context)

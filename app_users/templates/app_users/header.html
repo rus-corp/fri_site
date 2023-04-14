@@ -36,10 +36,10 @@
             <li><a href="{% url 'home' %}">{% trans "ГЛАВНАЯ" %}</a></li>
             <li><a href="{% url 'categories-main' %}">{% trans "КАТЕГОРИИ" %}</a></li>
             <li><a href="{% url 'orders' %}">{% trans "ЗАКАЗЫ" %}</a></li>
-            <li><a href="#">{% trans "СОЗДАТЬ ЗАКАЗ" %}</a></li>
+            <li><a href="{% url 'create-order' %}">{% trans "СОЗДАТЬ ЗАКАЗ" %}</a></li>
             <li><a href="#">{% trans "КОНКУРСЫ" %}</a></li>
             <li><a href="#">{% trans "ОБЪЯВИТЬ КОНКУРС" %}</a></li>
-            <li><a href="#">{% trans "ФРИЛАНСЕРЫ" %}</a></li>
+            <li><a href="{% url 'frelancers' %}">{% trans "ФРИЛАНСЕРЫ" %}</a></li>
             <li><a href="{{ about_platform.first.url }}">{% trans "О ПЛАТФОРМЕ" %}</a></li>
             <li><a href="{{ referral_program.first.url }}">{% trans "РЕФЕРАЛЬНАЯ ПРОГРАММА" %}</a></li>
             <li><a href="{{ working_rules.first.url }}">{% trans "ПРАВИЛА РАБОТЫ" %}</a></li>
