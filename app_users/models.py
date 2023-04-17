@@ -8,6 +8,7 @@ from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
 from app_accounts.models import Account
+from app_category.models import Specialization
 from .managers import CustomUserManager
 from .validators import avatar_size_validate, document_size_validate
 
@@ -68,6 +69,7 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     payment_account = models.CharField(_('Расчетный счет'), max_length=55, blank=True, null=True)
     recipients_name = models.CharField(_('Имя получателя платежа'), max_length=255, blank=True)
     acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True, default=None)  # счёт в паевом фонде
+    specialty = models.ManyToManyField(Specialization)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -82,6 +84,9 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def get_absolute_url(self):
+        return reverse('username', kwargs={'username': self.username})
 
     def get_referral_url(self):
         if self.status == '2':

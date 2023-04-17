@@ -1,6 +1,11 @@
 
 
 {% for frelancer in frelancers %}
-{{frelancer.}}
-
+    {{frelancer.first_name}}
+    {{frelancer.last_name}}
+    {{frelancer.username}}
+    <img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
+    <form action="{{frelancer.username}}/">
+        <button>Подробнее</button>
+    </form>
 {% endfor %}
