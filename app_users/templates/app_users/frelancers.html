@@ -3,9 +3,12 @@
 {% for frelancer in frelancers %}
     {{frelancer.first_name}}
     {{frelancer.last_name}}
-    {{frelancer.username}}
+    {{frelancer.slug}}
     <img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
-    <form action="{{frelancer.username}}/">
+<p class="link-read-post"><a href="{{ frelancer.get_absolute_url }}">Подробнее</a></p>
+
+
+    <form action="{{frelancer.slug}}/">
         <button>Подробнее</button>
     </form>
 {% endfor %}

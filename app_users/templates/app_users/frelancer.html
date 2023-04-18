@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {{frelancer.first_name}}
-    {{frelancer.last_name}}
-    {{frelancer.username}}
-</head>
-<body>
-
-</body>
+<!DOCTTYPE html>
+<html>
+	<head>
+		<title> Frelancer's profile </title>
+	</head>
+	<body>
+		{{frelancer.first_name}}
+    	{{frelancer.last_name}}
+    	{{frelancer.slug}}
+    	<img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
+	</body>
 </html>

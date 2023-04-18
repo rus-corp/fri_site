@@ -31,7 +31,7 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     email = models.EmailField(_('email'), unique=True, db_index=True)
     email_confirmed = models.BooleanField(_('email подтвержден'), default=False)
     
-    username = models.SlugField(max_length=55, db_index=True, unique=True, verbose_name=_('имя пользователя'), null=True, blank=True)
+    slug = models.SlugField(max_length=55, db_index=True, unique=True, verbose_name=_('имя пользователя'), null=True, blank=True)
     last_name = models.CharField(_('Фамилия'), max_length=55, blank=True, db_index=True)
     first_name = models.CharField(_('Имя'), max_length=55, blank=True, db_index=True)
     patronymic = models.CharField(_('Отчество'), max_length=55, blank=True, db_index=True)
@@ -86,7 +86,7 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
         return self.email
 
     def get_absolute_url(self):
-        return reverse('username', kwargs={'username': self.username})
+        return reverse('frelancer', kwargs={'frelancer_username': self.slug})
 
     def get_referral_url(self):
         if self.status == '2':

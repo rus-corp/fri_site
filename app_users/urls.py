@@ -36,5 +36,6 @@ urlpatterns = [
     path('profile/support/', support, name='support'),
 
     path('frelancers/', GetFrelancers.as_view(), name='frelancers'),
-    path('frelancers/<str:username>/', Frelancer.as_view(), name='frelancer'),
+    path('frelancers/<slug:frelancer_username>/', Frelancer.as_view(), name='frelancer'),
+
 ]
