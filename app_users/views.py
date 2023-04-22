@@ -14,9 +14,10 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views import generic
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, DetailView, ListView
 from django.views.generic.edit import FormView
 
+from DjBusinessPlatform.settings import MEDIA_URL
 from app_users.models import CustomUser
 
 from .forms import CustomUserCreationForm, PasswordSetForm, CustomUserChangeForm, ResetPasswordForm, ContactForm
@@ -383,10 +384,37 @@ def shareholders_book(request):
     )
 
 
-#вывод фрилансеров 
-def get_frelancers(request):
-    frelancers = CustomUser.objects.filter(status = 2)
-    context = {
-        'frelancers': frelancers
-    }
-    return render(request, 'app_users/frelancers.html', context)
+
+#вывод фрилансеров
+# def get_frelancers(request):
+#     frelancers = CustomUser.objects.filter(status = 2)
+#     print(frelancers, len(frelancers), MEDIA_URL)
+#     context = {
+#         'frelancers': frelancers, 'media': MEDIA_URL,
+#     }
+#     return render(request, 'app_users/frelancers.html', context)
+class GetFrelancers(ListView):
+    model = CustomUser
+    template_name = 'app_users/frelancers.html'
+    context_object_name = 'frelancers'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['media'] = MEDIA_URL
+        return context
+    def get_queryset(self):
+        return CustomUser.objects.filter(status = 2)
+
+class Frelancer(DetailView):
+    print('Frelancer---------------')
+    model = CustomUser
+    template_name = 'app_users/frelancer.html'
+    slug_url_kwarg = 'frelancer_username'
+    # pk_url_kwarg = 'pk'
+    context_object_name = 'frelancer'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print('--------------', context)
+        # context['title'] = context['frelancer']
+        context['media'] = MEDIA_URL
+        return context
+

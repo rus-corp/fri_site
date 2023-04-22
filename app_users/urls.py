@@ -35,5 +35,7 @@ urlpatterns = [
     path('profile/chat/', chat, name='chat'),
     path('profile/support/', support, name='support'),
 
-    path('frelancers/', get_frelancers, name='frelancers')
+    path('frelancers/', GetFrelancers.as_view(), name='frelancers'),
+    path('frelancers/<slug:frelancer_username>/', Frelancer.as_view(), name='frelancer'),
+
 ]

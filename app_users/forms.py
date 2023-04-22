@@ -5,6 +5,8 @@ from django.core.validators import validate_slug, validate_email
 from django.utils.translation import gettext_lazy as _
 from captcha.fields import CaptchaField
 
+from app_users.models import CustomUser
+
 User = get_user_model()
 
 
@@ -167,3 +169,9 @@ class ContactForm(forms.Form):
     email = forms.EmailField(label='E-mail')
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 100, 'rows': 2}))
     captcha = CaptchaField(label='Are you a human?')
+
+
+# class FrelancerForm(forms.ModelForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ['first_name', 'last_name', 'avatar', 'username']

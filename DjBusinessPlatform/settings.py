@@ -109,9 +109,9 @@ WSGI_APPLICATION = 'DjBusinessPlatform.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'frelance',
+        'NAME': 'fl',
         'USER': 'postgres',
-        'PASSWORD': '2909',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
