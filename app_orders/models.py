@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+
 from app_category.models import Activity, Categoryes, Specialization
 from app_users.models import CustomUser
 
@@ -16,6 +17,7 @@ class Order(models.Model):
     description = models.TextField()
     price = models.IntegerField(default=1000)
     slug = models.SlugField(max_length=100, unique=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     category = models.ForeignKey(Categoryes, on_delete=models.CASCADE)
@@ -23,7 +25,7 @@ class Order(models.Model):
     #активность заказа
     status = models.CharField(_('статус заказа'), choices=ORDER_TYPES, default='1', max_length=1)
     #заказчик
-    customer = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
     def __str__(self) -> str:
@@ -38,7 +40,7 @@ class OrderExecCust(models.Model):
         ('1', _('Кандидат')),
         ('2', _('Исполнитель')),
     ]
-    order = models.ForeignKey(Order, related_name='orders')
+    order = models.ForeignKey(Order, related_name='orders', on_delete=models.CASCADE)
     #исполнитель
     executor = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='executors')
     executor_status = models.CharField(_('статус исполнителя'), choices=STATUS_CHOICE, max_length=1)
