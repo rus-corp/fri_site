@@ -16,20 +16,19 @@
         <!--    ЛЕВАЯ КОЛОНКА ССЫЛОК begin  -->
         <ul>
             <li><a href="#">{% trans 'Услуги' %}</a></li>
-            <li><a href="#">{% trans 'Заказы' %}</a></li>
+            <li><a href="{% url 'orders' %}">{% trans 'Заказы' %}</a></li>
             <li><a href="#">{% trans 'Конкурсы' %}</a></li>
-            <li><a href="#">{% trans 'Фрилансеры' %}</a></li>
+            <li><a href="{% url 'frelancers' %}">{% trans 'Фрилансеры' %}</a></li>
             <li><a href="{{ about_platform.first.url }}">{% trans 'О платформе' %}</a></li>
             <li><a href="#">{% trans 'Безопасность' %}</a></li>
             <li><a href="{{ working_rules.first.url }}">{% trans 'Правила работы' %}</a></li>
             <li><a href="{{ referral_program.first.url }}">{% trans 'Реферальная программа' %}</a></li>
-            <li><a href="#">{% trans 'Помощь' %}</a></li>
+            <li><a href="{% url 'support' %}">{% trans 'Помощь' %}</a></li>
             <li><a href="#">{% trans 'Поиск' %}</a></li>
         </ul>
         <!--    ЛЕВАЯ КОЛОНКА ССЫЛОК finish  -->
 
         <!--    ФОРМА ОБРАТНОЙ СВЯЗИ begin  -->
-        <!--    пока не работает  -->
         <form method="post">
             {% csrf_token %}
             

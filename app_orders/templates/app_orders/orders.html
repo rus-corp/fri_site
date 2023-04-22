@@ -1,10 +1,10 @@
-{% extends 'app_users/_base.html' %}
+{% extends 'app_users/header.html' %}
 {% load static %}
 {% load i18n %}
 {% load flatpages %}
 {% get_flatpages '/about-platform/' as about_platform %}
 
-{% block middle %}
+{% block orders %}
 
 {% for order in object_list %}
 <h2>{{order.name}}</h2>

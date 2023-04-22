@@ -69,6 +69,10 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     recipients_name = models.CharField(_('Имя получателя платежа'), max_length=255, blank=True)
     acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True, default=None)  # счёт в паевом фонде
 
+    
+
+
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
