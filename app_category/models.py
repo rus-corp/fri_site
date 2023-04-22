@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-from app_users import CustomUser
+from app_users.models import CustomUser
 # Create your models here.
 
 class Activity(models.Model):
