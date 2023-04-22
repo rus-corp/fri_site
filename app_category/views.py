@@ -30,7 +30,7 @@ def main_view(request, activity=None, category=None, specialization=None):
     }
     if specialization:
         specialation_choice = Specialization.objects.get(slug=specialization)
-        SpecializationUser.objects.create(users=, specialization=specialation_choice)
+        SpecializationUser.objects.create(users=myuser, specialization=specialation_choice)
         specializtions = SpecializationUser.objects.filter(users_id=user_id)
         context['specializations_choice'] = specializtions
 
