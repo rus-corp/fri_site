@@ -8,7 +8,6 @@ class CreateOrder(ModelForm):
         self.fields['category'].empty_label = 'Категория не выбрана'
         self.fields['specialization'].empty_label = 'Категория не выбрана'
         
-
     class Meta:
         model = Order
         fields = ['name', 'description', 'price', 'activity', 'category', 'specialization']

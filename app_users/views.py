@@ -384,6 +384,7 @@ def shareholders_book(request):
     )
 
 
+
 #вывод фрилансеров
 # def get_frelancers(request):
 #     frelancers = CustomUser.objects.filter(status = 2)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+
+from app_users.models import CustomUser
 # Create your models here.
 
 class Activity(models.Model):
@@ -18,8 +20,6 @@ class Activity(models.Model):
         return reverse('categoryes', kwargs={'activity_slug': self.slug})
 
 
-    
-    
 
 class Categoryes(models.Model):
     name = models.CharField(max_length=200)
@@ -39,6 +39,7 @@ class Specialization(models.Model):
     category = models.ForeignKey(Categoryes, on_delete=models.CASCADE, related_name='specializations')
     slug = models.SlugField(max_length=55, unique=True, default='')
 
+
     class Meta:
         verbose_name = 'Специализации'
         verbose_name_plural = 'Специализации'
@@ -47,4 +48,9 @@ class Specialization(models.Model):
     def __str__(self) -> str:
         return self.name
     
+
+class SpecializationUser(models.Model):
+    users = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='users')
+    specializations = models.ForeignKey(Specialization, on_delete=models.CASCADE, related_name='specializations')
+
 

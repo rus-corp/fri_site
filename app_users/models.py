@@ -71,6 +71,10 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True, default=None)  # счёт в паевом фонде
     specialty = models.ManyToManyField(Specialization)
 
+    
+
+
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()

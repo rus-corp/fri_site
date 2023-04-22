@@ -17,8 +17,13 @@
 </div>
 <div class="specialization">
 {% for specialization in specializations %}
-<p><a href="">{{specialization}}</a></p>
+<p><a href="{% url 'spec' activity_slug category_slug specialization.slug}">{{specialization}}</a></p>
 {% endfor %}
 </div>
+
+{% for spec in spec_choice %}
+{{spec}}
+{% endfor %}
+
 
 {% endblock %}
