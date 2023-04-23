@@ -43,10 +43,10 @@ class CustomUserAdmin(admin.ModelAdmin):
                                      to_account=Fund.objects.get(name='Вступительный фонд').account)
             Operation.objects.create(purpose_of_payment='паевой взнос', summ=1, from_account=r_user.acc,
                                      to_account=Fund.objects.get(name='Паевой фонд').account)
-            Operation.objects.create(purpose_of_payment='паевой взнос', summ=999,
+            Operation.objects.create(purpose_of_payment='на развитие', summ=999,
                                      from_account=Fund.objects.get(name='Вступительный фонд').account,
                                      to_account=Fund.objects.get(name='Фонд развития').account)
-            Operation.objects.create(purpose_of_payment='паевой взнос', summ=1000,
+            Operation.objects.create(purpose_of_payment='на потребление', summ=1000,
                                      from_account=Fund.objects.get(name='Вступительный фонд').account,
                                      to_account=Fund.objects.get(name='Фонд потребления').account)
             for i, sum_ref in enumerate(SHARES):

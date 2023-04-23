@@ -10,7 +10,7 @@ from .forms import CreateOrder
 class CreateOrderView(CreateView):
     form_class = CreateOrder
     template_name = 'app_users/others/place_contract.html'
-    success_url = 'home'
+    success_url = 'orders'
 
 
 #вывод всех заказов

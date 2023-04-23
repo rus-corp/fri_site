@@ -8,7 +8,6 @@ from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
 from app_accounts.models import Account
-from app_category.models import Specialization
 from .managers import CustomUserManager
 from .validators import avatar_size_validate, document_size_validate
 
@@ -31,7 +30,7 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     email = models.EmailField(_('email'), unique=True, db_index=True)
     email_confirmed = models.BooleanField(_('email подтвержден'), default=False)
     
-    slug = models.SlugField(max_length=55, db_index=True, unique=True, verbose_name=_('имя пользователя'), null=True, blank=True)
+    slug = models.SlugField(max_length=55, db_index=True, unique=True, verbose_name=_('имя пользователя'))
     last_name = models.CharField(_('Фамилия'), max_length=55, blank=True, db_index=True)
     first_name = models.CharField(_('Имя'), max_length=55, blank=True, db_index=True)
     patronymic = models.CharField(_('Отчество'), max_length=55, blank=True, db_index=True)

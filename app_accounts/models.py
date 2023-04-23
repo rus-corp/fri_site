@@ -14,7 +14,12 @@ class Account(models.Model):
         verbose_name_plural = _('счета')
 
 class Operation(models.Model):
-    purpose_of_payment = models.CharField(_('назначение платежа'), max_length=255, unique=True)
+    CURRENCY_CHOICES = (
+        ("RUB", _("Рубли")),
+        ("USD", _("Доллары США")),
+    )
+    currency = models.CharField(_('валюта операции'), max_length=3, choices=CURRENCY_CHOICES, default="RUB")
+    purpose_of_payment = models.CharField(_('назначение платежа'), max_length=255)
     summ = models.DecimalField(_('сумма'), max_digits=11, decimal_places=2)
     from_account = models.ForeignKey(Account, related_name='f_acc', on_delete=models.PROTECT,
                                      verbose_name=_('счёт списания'))
@@ -30,6 +35,9 @@ class Operation(models.Model):
 class Fund(models.Model):
     name = models.CharField(_('наименование фонда'), max_length=255, unique=True)
     account = models.ForeignKey(Account, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = _('фонд')
