@@ -16,3 +16,5 @@ admin.site.register(Order, OrderAdmin)
 class OrderExecutAdmin(admin.ModelAdmin):
     model = OrderExecCust
     list_display = ['id', 'order', 'executor']
+
+admin.site.register(OrderExecCust, OrderExecutAdmin)

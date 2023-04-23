@@ -12,7 +12,7 @@ class CreateOrder(ModelForm):
         
     class Meta:
         model = Order
-        fields = ['name', 'slug', 'description', 'price', 'activity', 'category', 'specialization', 'customer']
+        fields = ['name', 'description', 'price', 'activity', 'category', 'specialization']
         widgets = {
             'name': TextInput(attrs={'class': 'form-input'}),
             'description': TextInput(attrs={'cols': 40, 'rows': 8})

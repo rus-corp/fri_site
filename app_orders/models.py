@@ -2,12 +2,16 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from transliterate import translit
+from django.utils.text import slugify
+
 
 
 from app_category.models import Activity, Categoryes, Specialization
 from app_users.models import CustomUser
 
 User = get_user_model()
+
 class Order(models.Model):
     ORDER_TYPES = [
         ('1', _('Предварительный')),
@@ -30,9 +34,10 @@ class Order(models.Model):
     #заказчик
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
-    # def save(self, request, *args, **kwargs):
-    #     # self.customer = request.user.id
-    #     super().save(customer=request.user.id, *args, **kwargs)
+    def sqve(self, *args, **kwargs):
+        name = translit(self.name, reversed=True)
+        self.slug = slugify(name)
+        super(Order, self).save(*args, **kwargs)
 
 
     def __str__(self) -> str:
