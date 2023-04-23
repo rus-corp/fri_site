@@ -405,16 +405,16 @@ class GetFrelancers(ListView):
         return CustomUser.objects.filter(status = 2)
 
 class Frelancer(DetailView):
-    print('Frelancer---------------')
     model = CustomUser
     template_name = 'app_users/frelancer.html'
     slug_url_kwarg = 'frelancer_username'
-    # pk_url_kwarg = 'pk'
+
     context_object_name = 'frelancer'
+    
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        print('--------------', context)
         # context['title'] = context['frelancer']
         context['media'] = MEDIA_URL
         return context
+
 
