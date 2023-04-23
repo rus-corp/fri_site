@@ -16,8 +16,9 @@ class Order(models.Model):
     name = models.CharField(max_length=150, default='')
     description = models.TextField()
     price = models.IntegerField(default=1000)
-    slug = models.SlugField(max_length=100, unique=True, default='')
+    username = models.SlugField(max_length=100, unique=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=80, unique=True)
 
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     category = models.ForeignKey(Categoryes, on_delete=models.CASCADE)

@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-from app_users.models import CustomUser
+# from app_users.models import CustomUser
 # Create your models here.
 
 class Activity(models.Model):
@@ -50,7 +50,7 @@ class Specialization(models.Model):
     
 
 class SpecializationUser(models.Model):
-    users = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='users')
+    users = models.ForeignKey(to='app_users.CustomUser', on_delete=models.CASCADE, related_name='users')
     specializations = models.ForeignKey(Specialization, on_delete=models.CASCADE, related_name='specializations')
 
 

@@ -69,8 +69,6 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     payment_account = models.CharField(_('Расчетный счет'), max_length=55, blank=True, null=True)
     recipients_name = models.CharField(_('Имя получателя платежа'), max_length=255, blank=True)
     acc = models.ForeignKey(Account, on_delete=models.PROTECT, null=True, blank=True, default=None)  # счёт в паевом фонде
-    specialty = models.ManyToManyField(Specialization)
-
     
 
 
