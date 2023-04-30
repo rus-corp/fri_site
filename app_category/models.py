@@ -1,5 +1,9 @@
 from django.db import models
 from django.urls import reverse
+from transliterate import translit
+from django.utils.text import slugify
+
+
 
 
 # from app_users.models import CustomUser
@@ -16,8 +20,17 @@ class Activity(models.Model):
     def __str__(self) -> str:
         return self.name
     
-    def get_absolute_url(self):
-        return reverse('categoryes', kwargs={'activity_slug': self.slug})
+    # def get_absolute_url(self):
+    #     return reverse('categoryes', kwargs={'activity_slug': self.slug})
+    
+    def save(self, *args, **kwargs):
+        try:
+            name = translit(self.name, reversed=True)
+            self.slug = slugify(name)
+        except:
+            self.slug = slugify(self.name)
+        super(Activity, self).save(*args, **kwargs)
+
 
 
 
@@ -32,12 +45,21 @@ class Categoryes(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+    def save(self, *args, **kwargs):
+        try:
+            name = translit(self.name, reversed=True)
+            self.slug = slugify(name)
+        except:
+            self.slug = slugify(self.name)
+        super(Categoryes, self).save(*args, **kwargs)
     
 
 class Specialization(models.Model):
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Categoryes, on_delete=models.CASCADE, related_name='specializations')
-    slug = models.SlugField(max_length=55, unique=True, default='')
+    slug = models.SlugField(max_length=155, unique=True, default='')
 
 
     class Meta:
@@ -47,6 +69,14 @@ class Specialization(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def save(self, *args, **kwargs):
+        try:
+            name = translit(self.name, reversed=True)
+            self.slug = slugify(name)
+        except:
+            self.slug = slugify(self.name)
+        super(Specialization, self).save(*args, **kwargs)
     
 
 class SpecializationUser(models.Model):
