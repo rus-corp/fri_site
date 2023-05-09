@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth import logout, login, authenticate
@@ -6,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.contrib.auth.views import LogoutView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.humanize.templatetags.humanize import NaturalTimeFormatter
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -34,7 +37,7 @@ class IndexView(TemplateView, FormView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-    
+
     def form_valid(self, form):
         print(form.cleaned_data)
         return redirect('home')
@@ -210,7 +213,8 @@ def balance(request):
 def topup_withdrawal(request):
     context = {
         'user': request.user, 'title': _('Пополнение / Вывод'), 'current_elem': 'topup_withdrawal',
-        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile', _('Пополнение / Вывод'): 'topup_withdrawal'}
+        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile',
+                        _('Пополнение / Вывод'): 'topup_withdrawal'}
     }
     return render(
         request,
@@ -252,7 +256,8 @@ def contests(request):
 def place_contract(request):
     context = {
         'user': request.user, 'title': _('Разместить заказ'), 'current_elem': 'place_contract',
-        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile', _('Разместить заказ'): 'place_contract'}
+        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile',
+                        _('Разместить заказ'): 'place_contract'}
     }
     return render(
         request,
@@ -266,7 +271,8 @@ def place_contract(request):
 def announce_contest(request):
     context = {
         'user': request.user, 'title': _('Объявить конкурс'), 'current_elem': 'announce_contest',
-        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile', _('Объявить конкурс'): 'announce_contest'}
+        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile',
+                        _('Объявить конкурс'): 'announce_contest'}
     }
     return render(
         request,
@@ -279,12 +285,12 @@ def announce_contest(request):
 @login_required
 def search_contractor(request):
     context = {
-        'user': request.user, 
-        'title': _('Поиск исполнителя'), 
+        'user': request.user,
+        'title': _('Поиск исполнителя'),
         'current_elem': 'search_contractor',
-        'breadcrumbs': {_('Главная'): 
-        'home', _('Личный кабинет'): 'edit_profile', 
-        _('Поиск исполнителя'): 'search_contractor'}
+        'breadcrumbs': {_('Главная'):
+                            'home', _('Личный кабинет'): 'edit_profile',
+                        _('Поиск исполнителя'): 'search_contractor'}
     }
     return render(
         request,
@@ -363,7 +369,8 @@ def account_agreement_view(request):
 def account_security_view(request):
     context = {
         'user': request.user, 'title': _('Пароль и безопасность'), 'current_elem': 'password_and_security',
-        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile', _('Пароль и безопасность'): 'password_and_security'}
+        'breadcrumbs': {_('Главная'): 'home', _('Личный кабинет'): 'edit_profile',
+                        _('Пароль и безопасность'): 'password_and_security'}
     }
     return render(
         request,
@@ -384,8 +391,7 @@ def shareholders_book(request):
     )
 
 
-
-#вывод фрилансеров
+# вывод фрилансеров
 # def get_frelancers(request):
 #     frelancers = CustomUser.objects.filter(status = 2)
 #     print(frelancers, len(frelancers), MEDIA_URL)
@@ -397,12 +403,22 @@ class GetFrelancers(ListView):
     model = CustomUser
     template_name = 'app_users/frelancers.html'
     context_object_name = 'frelancers'
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['media'] = MEDIA_URL
+        # context['member'] = []
+        # for j in context['frelancers']:
+        #     context['member'].append(j.date_joined)
+        context['member'] = {}
+        for j in context['frelancers']:
+            context['member'][j.pk] = j.date_joined
+        print('============', context['member'])
         return context
+
     def get_queryset(self):
-        return CustomUser.objects.filter(status = 2)
+        return CustomUser.objects.filter(status=2)
+
 
 class Frelancer(DetailView):
     print('Frelancer---------------')
@@ -411,10 +427,14 @@ class Frelancer(DetailView):
     slug_url_kwarg = 'frelancer_username'
     # pk_url_kwarg = 'pk'
     context_object_name = 'frelancer'
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         print('--------------', context)
         # context['title'] = context['frelancer']
         context['media'] = MEDIA_URL
+        context['member'] = datetime.date.today() - self.object.date_joined.date()
+        print(context['member'])
+        # print(self.object.date_joined.date())
+        # -
         return context
-

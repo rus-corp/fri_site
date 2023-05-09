@@ -20,6 +20,7 @@ from DjBusinessPlatform import settings
 
 urlpatterns = [
     path("i18n", include("django.conf.urls.i18n")),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path("admin/", admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("", include("app_users.urls")),  # главная и ЛК пользователей

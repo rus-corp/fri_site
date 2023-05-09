@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admindocs',
 
     'django.contrib.sites',  # это нужно для корректной работы flatpages.
     'django.contrib.flatpages',
+    'django.contrib.humanize',
     'ckeditor',
     'ckeditor_uploader',
     'captcha',
@@ -109,7 +111,7 @@ WSGI_APPLICATION = 'DjBusinessPlatform.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'frelance',
+        'NAME': 'fl',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
