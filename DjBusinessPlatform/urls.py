@@ -21,17 +21,17 @@ from DjBusinessPlatform import settings
 urlpatterns = [
     path("i18n", include("django.conf.urls.i18n")),
     path("admin/", admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
     path("", include("app_users.urls")),  # главная и ЛК пользователей
     path("polls/", include("app_survey.urls")),  # голосование
     path("news/", include("app_news.urls")),  # новости
     path("referral/", include("app_referral_program.urls")),  # Реферальная программа
     path("tickets/", include("app_tickets.urls")),  # Тикеты
     path("", include("app_portfolio.urls")),  # Портфолио
-    path('captcha/', include('captcha.urls')),
-    path('categories/', include('app_category.urls')),
-    path('orders/', include('app_orders.urls')),
-    path('referral_link/', include('app_referral_link.urls')),
+    path("captcha/", include("captcha.urls")),
+    path("categories/", include("app_category.urls")),
+    path("orders/", include("app_orders.urls")),
+    path("referral_link/", include("app_referral_link.urls")),
 ]
 
 if settings.DEBUG:
