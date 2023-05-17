@@ -17,7 +17,7 @@
 .flag {
     width: 16px;
     height: 11px;
-    background:url('../../assets/img/flags.png') no-repeat
+    background:url('flags.png') no-repeat
 }
 .country-phone-search-label {position: absolute; margin: -20px 0 0 4px; color: #999 !important; font-size: 13px !important;}
 
