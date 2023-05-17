@@ -1,12 +1,16 @@
+{% load static %}
+{% load i18n %}
+{% load humanize %}
 <!DOCTTYPE html>
 <html>
 	<head>
 		<title> Frelancer's profile </title>
 	</head>
 	<body>
-		{{frelancer.first_name}}
-    	{{frelancer.last_name}}
-    	{{frelancer.slug}}
+		{{frelancer.first_name}}<br>
+    	{{frelancer.last_name}}<br>
+		Участник {{frelancer.date_joined|naturaltime}} <br>
+    	{{frelancer.slug}}<br>
     	<img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
 	</body>
 </html>

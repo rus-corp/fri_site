@@ -5,15 +5,21 @@ from app_accounts.models import Fund, Account, Operation
 
 # Register your models here.
 class FundAdmin(admin.ModelAdmin):
-    list_display = ('name', 'account')
+    list_display = ("name", "rub_account", "usd_account")
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('account',)
+    list_display = ("account", "currency")
 
 
 class OperationAdmin(admin.ModelAdmin):
-    list_display = ('purpose_of_payment', 'summ', 'from_account', 'to_account', 'time_operation')
+    list_display = (
+        "purpose_of_payment",
+        "summ",
+        "from_account",
+        "to_account",
+        "time_operation",
+    )
 
 
 admin.site.register(Fund, FundAdmin)
