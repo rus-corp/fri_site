@@ -34,9 +34,9 @@
         <a class="menu-button"></a>
         <ul>
             <li><a href="{% url 'home' %}">{% trans "ГЛАВНАЯ" %}</a></li>
-            <li><a href="{% url 'categories-main' %}">{% trans "КАТЕГОРИИ" %}</a></li>
+            <li><a href="#">{% trans "КАТЕГОРИИ" %}</a></li>
             <li><a href="{% url 'orders' %}">{% trans "ЗАКАЗЫ" %}</a></li>
-            <li><a href="{% url 'create-order' %}">{% trans "СОЗДАТЬ ЗАКАЗ" %}</a></li>
+            <li><a href="#">{% trans "СОЗДАТЬ ЗАКАЗ" %}</a></li>
             <li><a href="#">{% trans "КОНКУРСЫ" %}</a></li>
             <li><a href="#">{% trans "ОБЪЯВИТЬ КОНКУРС" %}</a></li>
             <li><a href="{% url 'frelancers' %}">{% trans "ФРИЛАНСЕРЫ" %}</a></li>
@@ -50,93 +50,39 @@
     </div>
 
     {% if request.user.is_authenticated %}
-        <div class="user">
-            {% if request.user.is_core %}
-                {% trans "Основатель" %}
-            {% else %}
-                {{ request.user.get_status_display }}
-            {% endif %}
-            <a class="play"></a> <a class="round"></a> <i>{% trans "отпуск" %}</i>
+    <div class="langs-block">
+        <a href="#" class="lang">RU <i class="fa fa-angle-down"></i></a>
+
+        <div class="window">
+            <a href="#">RU</a>
+            <a href="#">EN</a>
         </div>
-
-        <ul>
-            <li><a href="{% url 'tickets' %}">{% trans "Тикеты" %}</a></li>
-            <li><a href="{% url 'news_list' %}">{% trans "Новости" %}</a></li>
-            <li>
-                <a href="{% url 'polls-list' %}">
-                    {% trans "Голосование" %}
-                    {% if number_polls > 0 %}<sup id="unread-polls-number">{{ number_polls }}</sup>{% endif %}
-                </a>
-            </li>
-            <li><a href="{% url 'referral_program' %}">{% trans "Реферальная программа" %}</a></li>
-        </ul>
-
+    </div>
+    <div class="name">
+        <div><img src="{% static 'assets/img/avatar.png' %}"></div>
+        <div><a href="#">Ольга Рыбкина</a></div>
+        <div class="window">
+            <div class="avatar">
+                <img src="{% static 'assets/img/avatar2.png' %}">
+                <a href="#" class="edit"></a>
+            </div>
+            <div class="links">
+                <a href="#">Профиль</a>
+                <a href="#">Личный кабинет</a>
+                <a href="{% url 'logout' %}">Выход из аккаунта</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
         <div class="langs-block">
             <a href="#" class="lang">RU <i class="fa fa-angle-down"></i></a>
+            <a href="{% url 'login_user' %}" style="text-decoration: none;">Вход</a>
             <div class="window">
                 <a href="#">RU</a>
                 <a href="#">EN</a>
             </div>
         </div>
-
-        <a class="search-link"></a>
-
-        <div class="name">
-            {% if request.user.avatar %}
-                <div><img src="{% static 'assets/img/avatar.png' %}"></div>
-            {% else %}
-                <div><img src="{% static 'assets/img/avatar.png' %}"></div>
-            {% endif %}
-
-            <div>
-                <a href="#">
-                    {% if request.user.last_name and request.user.first_name %}
-                        {{ request.user.first_name }} {{ request.user.last_name }}
-                    {% else %}
-                        {% trans "Личный кабинет" %}
-                    {% endif %}
-                    <i class="fa fa-angle-down"></i>
-                </a>
-            </div>
-
-            <div class="window">
-                <div class="avatar">
-                    {% if request.user.avatar %}
-                        <div class="avatar">
-                            <img src="{% static 'assets/img/avatar2.png' %}">
-                            <a href="#" class="edit"></a>
-                        </div>
-                    {% else %}
-                        <div class="avatar">
-                            <img src="{% static 'assets/img/avatar2.png' %}">
-                            <a href="#" class="edit"></a>
-                        </div>
-                    {% endif %}
-                    <a href="#" class="edit"></a>
-                </div>
-
-                <div class="links">
-                    <a href="{% url 'edit_profile' %}">{% trans "Личные данные" %}</a>
-                    <a href="{% url 'verification' %}">{% trans "Верификация" %}</a>
-                    <a href="{% url 'password_and_security' %}">{% trans "Пароль и безопасность" %}</a>
-                    <a href="{% url 'notifications' %}">{% trans "Уведомления" %}</a>
-                    <a href="{% url 'agreement' %}">{% trans "Договор" %}</a>
-                </div>
-
-                <div class="bottom-link">
-                    <a href="{% url 'logout' %}">{% trans "Выход" %}</a>
-                </div>
-            </div>
-        </div>
-
     {% endif %}
-
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="logout"></a>
-    {% else %}
-        <button class="login-btn" onclick="loginPopup()">{% trans "Вход" %}</button>
-    {% endif %}
-
-
 </header>
+
 

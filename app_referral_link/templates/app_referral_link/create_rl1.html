@@ -1,8 +1,95 @@
-<form action="{% url 'referral_link' %}" method="post" enctype="multipart/form-data">
+{% extends 'app_users/_base.html' %}
+{% load static %}
+<!-- <form action="{% url 'referral_link' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Отправить</button>
-</form>
+</form> -->
 
+{% block middle %}
+    <div class="personal-section">
+        <div class="personal__title">
+            Получение реферальной ссылки
+        </div>
+
+        <form class="personal__form referal-link" action="#" method="post" enctype="multipart/form-data">
+            <label class="personal__input-box">
+                {{ form.name}}
+            </label>
+
+            <label class="personal__input-box">
+                {{ form.email}}
+            </label>
+
+            <div class="referal-link__top">
+                <a class="referal-link__specialty-link" href="#">Выбор специализации</a>
+                <div class="referal-link__specialty-list">
+                    Погонщик верблюдов, мойщик асфальта, собиратель мусора, сочинитель басен, рассказчик анекдотов
+                </div>
+            </div>
+            <div class="referal-link__portfolio">
+                <div class="referal-link__portfolio-text">
+                    Чтобы мы могли убедиться в вашей квалификации пришлите пять примеров своих работ в виде ссылок или картинок:
+                </div>
+                <div class="referal-link__portfolio-box">
+                    <textarea class="referal-link__portfolio-textarea"></textarea>
+                    <button class="referal-link__portfolio-btn">
+                        <img src="img/referal-link-file-btn.png" alt="">
+                    </button>3
+                </div>
+                <div class="referal-link__portfolio-files">
+                    <div class="referal-link__portfolio-file">
+                        <div class="referal-link__portfolio-num">1.</div>
+                        <div class="referal-link__portfolio-img">
+                            <img src="img/referal-file-1.svg" alt="">
+                        </div>
+                        <a class="referal-link__portfolio-link" href="#">Загрузить (jpg; 18,37кб)</a>
+                    </div>
+                    <div class="referal-link__portfolio-file">
+                        <div class="referal-link__portfolio-num">2.</div>
+                        <div class="referal-link__portfolio-img">
+                            <img src="img/referal-file-2.svg" alt="">
+                        </div>
+                        <a class="referal-link__portfolio-link" href="#">Загрузить (zip; 18,37кб)</a>
+                    </div>
+                    <div class="referal-link__portfolio-file">
+                        <div class="referal-link__portfolio-num">3.</div>
+                        <div class="referal-link__portfolio-img">
+                            <img src="img/referal-file-1.svg" alt="">
+                        </div>
+                        <a class="referal-link__portfolio-link" href="#">Загрузить (jpg; 18,37кб)</a>
+                    </div>
+                    <div class="referal-link__portfolio-file">
+                        <div class="referal-link__portfolio-num">4.</div>
+                        <div class="referal-link__portfolio-img">
+                            <img src="img/referal-file-1.svg" alt="">
+                        </div>
+                        <a class="referal-link__portfolio-link" href="#">Загрузить (jpg; 18,37кб)</a>
+                    </div>
+                    <div class="referal-link__portfolio-file">
+                        <div class="referal-link__portfolio-num">5.</div>
+                        <div class="referal-link__portfolio-img">
+                            <img src="img/referal-file-1.svg" alt="">
+                        </div>
+                        <a class="referal-link__portfolio-link" href="#">Загрузить (jpg; 18,37кб)</a>
+                    </div>
+                </div>
+            </div>
+            <div class="referal-link__bottom">
+                <div class="personal__policy">
+                    <label class="personal__policy-label">
+                        <input class="personal__policy-input" type="checkbox">
+                        <span class="personal__policy-checkbox"></span>
+                    </label>
+                    <div class="personal__policy-text">
+                        Я даю <a href="#">согласие</a> на обработку персональных данных</a>
+                    </div>
+                </div>
+                <button class="personal__submit">Отправить</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
 
 

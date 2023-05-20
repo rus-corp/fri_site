@@ -12,53 +12,56 @@
 
 <footer class="footer">
     <div class="flex">
-
-        <!--    ЛЕВАЯ КОЛОНКА ССЫЛОК begin  -->
         <ul>
-            <li><a href="#">{% trans 'Услуги' %}</a></li>
-            <li><a href="{% url 'orders' %}">{% trans 'Заказы' %}</a></li>
-            <li><a href="#">{% trans 'Конкурсы' %}</a></li>
-            <li><a href="{% url 'frelancers' %}">{% trans 'Фрилансеры' %}</a></li>
-            <li><a href="{{ about_platform.first.url }}">{% trans 'О платформе' %}</a></li>
-            <li><a href="#">{% trans 'Безопасность' %}</a></li>
-            <li><a href="{{ working_rules.first.url }}">{% trans 'Правила работы' %}</a></li>
-            <li><a href="{{ referral_program.first.url }}">{% trans 'Реферальная программа' %}</a></li>
-            <li><a href="{% url 'support' %}">{% trans 'Помощь' %}</a></li>
-            <li><a href="#">{% trans 'Поиск' %}</a></li>
+            <li><a href="#">Категории</a></li>
+            <li><a href="#">Заказы</a></li>
+            <li><a href="#">Конкурсы</a></li>
+            <li><a href="#">Фрилансеры</a></li>
+            <li><a href="#">О платформе</a></li>
+            <li>
+                <a class="footer-security" href="#">Безопасность</a>
+                <div class="footer-security__buttons">
+                    <a href="#">Политика обработки персональных данных</a>
+                    <a href="#">Согласие на обработку персональных данных</a>
+                    <a href="#">Правила в отношении использования файлов cookie</a>
+                </div>
+            </li>
+            <li><a href="#">Правила работы</a></li>
+            <li><a href="#">Реферальная программа</a></li>
+            <li><a href="#">Помощь</a></li>
+            <li><a href="#">Поиск</a></li>
         </ul>
-        <!--    ЛЕВАЯ КОЛОНКА ССЫЛОК finish  -->
-
-        <!--    ФОРМА ОБРАТНОЙ СВЯЗИ begin  -->
-        <form method="post">
-            {% csrf_token %}
-            
-            <p>{% trans 'ФОРМА ОБРАТНОЙ СВЯЗИ' %}</p>
-            {{ form.as_p }}
-            <button type="submit">{% trans 'Отправить' %}</button>
+        <form>
+            <p>ФОРМА ОБРАТНОЙ СВЯЗИ</p>
+            <input type="text" placeholder="Введите имя">
+            <input type="text" placeholder="Ваш E-mail">
+            <textarea placeholder="Ваше сообщение"></textarea>
+            <button>Отправить</button>
         </form>
-        <!--    ФОРМА ОБРАТНОЙ СВЯЗИ finish  -->
-
-        <!--    ПРАВАЯ КОЛОНКА ССЫЛОК begin  -->
         <ul class="tar">
-            <li><a href="{% static 'documents/Regulation.pdf' %}" target="_blank">{% trans 'Устав' %}</a></li>
-            <li><a href="{% static 'documents/sign_in_dog.pdf' %}" target="_blank">{% trans 'Договор о вступлении' %}</a></li>
-            <li><a href="{% static 'documents/Provision_on_terms_and_definitions.pdf' %}" target="_blank">{% trans 'О терминах и определениях' %}</a></li>
-            <li><a href="{% static 'documents/Regulations_on_the_Audit_Commission.pdf' %}" target="_blank">{% trans 'О ревизионной комиссии' %}</a></li>
-            <li><a href="{% static 'documents/Regulations_on_contributions_and_funds.pdf' %}" target="_blank">{% trans 'О взносах и фондах' %}</a></li>
-            <li><a href="{% static 'documents/Regulations_on_loans.pdf' %}" target="_blank">{% trans 'О займах' %}</a></li>
+            <li><a href="#">Минимально допустимые тарифы</a></li>
+            <li><a href="#">Свидетельство о регистрации</a></li>
+            <li><a href="#">О терминах и опеределениях</a></li>
+            <li><a href="#">О специальных комиссиях</a></li>
+            <li><a href="#">Презентация Clik-Work</a></li>
+            <li><a href="#">Договор о вступлении</a></li>
+            <li><a href="#">О взносах и фондах</a></li>
+            <li><a href="#">Этический кодекс</a></li>
+            <li><a href="#">О займах</a></li>
+            <li><a href="#">Устав</a></li>
         </ul>
-        <!--    ПРАВАЯ КОЛОНКА ССЫЛОК finish  -->
-
     </div>
-
-    <!--    ССЫЛКИ НА СОЦСЕТИ begin  -->
     <div class="social">
-        {% if social_media.social_media_item.all %}
-            {% for item in social_media.social_media_item.all %}
-                <a title="{{ item.name }}" target="_blank" href="{{ item.link }}"><img alt="{{ item.name }}-logo" src="{{ item.icon.url }}"></a>
-            {% endfor %}
-        {% endif %}
+        <a href="#"><img src="{% static 'img/social1.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social2.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social3.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social4.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social5.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social6.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social7.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social8.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social9.svg' %}"></a>
+        <a href="#"><img src="{% static 'img/social10.sv' %}g"></a>
+        <a href="#"><img src="{% static 'img/social11.sv' %}g"></a>
     </div>
-    <!--    ССЫЛКИ НА СОЦСЕТИ finish  -->
-
 </footer>

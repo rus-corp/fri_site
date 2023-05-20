@@ -1,14 +1,22 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
 from app_users.views import *
 
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
+    path("about", about, name="about"),
+    path("rules", about, name="rules"),
+    path("ref_prog", about, name="ref_prog"),
+
     path("signup/<int:personal_account>/", SignUp.as_view(), name="signup"),
     path("signup_error/", signup_error, name="signup_error"),
     path("login_user/", login_user, name="login_user"),
     path("logout/", LogOutView.as_view(), name="logout"),
     path("password_reset/", ResetPasswordView.as_view(), name="password_reset"),
+
+    #смена пароля
+    path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     path(
         "password_reset/done/",
         ResetPasswordDoneView.as_view(),

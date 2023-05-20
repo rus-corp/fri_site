@@ -12,7 +12,7 @@ from django.contrib.auth.views import (
     PasswordResetCompleteView,
 )
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlsafe_base64_decode
@@ -31,6 +31,7 @@ from .forms import (
     CustomUserChangeForm,
     ResetPasswordForm,
     ContactForm,
+    LoginForm
 )
 from .utils import send_email_for_verify, get_referrer
 
@@ -49,6 +50,17 @@ class IndexView(TemplateView, FormView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return redirect("home")
+
+
+def about(request):
+    return render(request, 'app_users/static_pages/about.html')
+
+def rules(request):
+    return render(request, 'app_users/static_pages/rules.html')
+
+
+def ref_progr(request):
+    return render(request, 'app_users/static_pages/ref.html')
 
 
 # Регистрирует кандидатов во фрилансеры по реф. ссылке. НЕ ИСПОЛЬЗОВАТЬ для регистрации заказчиков.
@@ -121,19 +133,40 @@ class EmailVerify(View):
 
 
 def login_user(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(username=username, password=password)
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, email=cd['email'],
+                                password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect(reverse('home'))
+                else:
+                    return HttpResponse('Нет такого пользователя')
+            else:
+                return HttpResponse('Не верный логин')
+    else:
+        form = LoginForm()
+    return render(request, 'app_users/login_user.html', {'form': form})
+            
 
-        if user is not None:
-            if not user.email_confirmed:
-                send_email_for_verify(request, user)
-                return HttpResponseRedirect(reverse("confirm_email"))
-            login(request, user)
-            return HttpResponseRedirect(reverse("home"))
-        else:
-            return HttpResponseRedirect(reverse("home"))
+
+# def login_user(request):
+#     if request.method == "POST":
+#         username = request.POST["username"]
+#         password = request.POST["password"]
+#         user = authenticate(username=username, password=password)
+
+#         if user is not None:
+#             if not user.email_confirmed:
+#                 send_email_for_verify(request, user)
+#                 return HttpResponseRedirect(reverse("confirm_email"))
+#             login(request, user)
+#             return HttpResponseRedirect(reverse("home"))
+#         else:
+#             return HttpResponseRedirect(reverse("home"))
 
 
 def signup_error(request):
