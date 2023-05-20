@@ -23,6 +23,7 @@ from django.views.generic import TemplateView, UpdateView, DetailView, ListView
 from django.views.generic.edit import FormView
 
 from DjBusinessPlatform.settings import MEDIA_URL
+from app_category.models import SpecializationUser, Specialization
 from app_users.models import CustomUser
 
 from .forms import (
@@ -426,36 +427,52 @@ def shareholders_book(request):
 
 
 # вывод фрилансеров
-# def get_frelancers(request):
-#     frelancers = CustomUser.objects.filter(status = 2)
-#     print(frelancers, len(frelancers), MEDIA_URL)
-#     context = {
-#         'frelancers': frelancers, 'media': MEDIA_URL,
-#     }
-#     return render(request, 'app_users/frelancers.html', context)
-class GetFrelancers(ListView):
-    model = CustomUser
-    template_name = "app_users/frelancers.html"
-    context_object_name = "frelancers"
+def get_frelancers(request):
+    frelancers = CustomUser.objects.filter(status=2)
+    print(frelancers, len(frelancers), MEDIA_URL)
+    context = {"frelancers": frelancers, "media": MEDIA_URL, "spec": {}}
+    for frelancer in frelancers:
+        context["spec"][frelancer.pk] = []
+        for sp in SpecializationUser.objects.filter(users=frelancer):
+            context["spec"][frelancer.pk].append(sp.specializations.name)
+    return render(request, "app_users/frelancers.html", context)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["media"] = MEDIA_URL
-        return context
 
-    def get_queryset(self):
-        return CustomUser.objects.filter(status=2)
+# class GetFrelancers(ListView):
+#     model = CustomUser
+#     template_name = "app_users/frelancers.html"
+#     context_object_name = "frelancers"
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["media"] = MEDIA_URL
+#         print("1111111", context["view"])
+#         context['spec'] = {}
+#         for frelancer in context["frelancers"]:
+#             print("=============", frelancer)
+#             context['spec'][str(frelancer.pk)] = []
+#             for sp in SpecializationUser.objects.filter(users=frelancer):
+#                 print("$$$$$$$", sp.specializations, sp.users)
+#                 context['spec'][str(frelancer.pk)].append(sp.specializations.name)
+#             print("+++++++++++", context['spec'])
+#         print("---------------", context)
+#         return context
+#
+#     def get_queryset(self):
+#         return CustomUser.objects.filter(status=2)
 
 
 class Frelancer(DetailView):
     model = CustomUser
     template_name = "app_users/frelancer.html"
     slug_url_kwarg = "frelancer_username"
-
     context_object_name = "frelancer"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['title'] = context['frelancer']
         context["media"] = MEDIA_URL
+        context["spec"] = []
+        print("--------------", context)
+        for sp in SpecializationUser.objects.filter(users=context['frelancer']):
+            context["spec"].append(sp.specializations.name)
         return context

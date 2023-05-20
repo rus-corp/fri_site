@@ -4,8 +4,15 @@
         {{frelancer.first_name}}
         {{frelancer.last_name}}
         {{frelancer.slug}}<br>
-        <img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
-                <p class="link-read-post"><a href="{{ frelancer.get_absolute_url }}">Подробнее</a></p>
+        <img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50"><br>
+        {% for fr, sp_list in spec.items %}
+                {% if fr == frelancer.pk %}
+                        {% for sp in sp_list %}
+                                {{sp}}<br>
+                        {% endfor %}
+                {% endif %}
+        {% endfor %}
+        <p class="link-read-post"><a href="{{ frelancer.get_absolute_url }}">Подробнее</a></p>
         <form action="{{frelancer.slug}}/">
                 <button>Подробнее</button>
         </form>
