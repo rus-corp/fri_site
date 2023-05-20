@@ -15,6 +15,11 @@ from app_users.models import CustomUser
 User = get_user_model()
 
 
+class LoginForm(forms.Form):
+    field1 = forms.CharField(widget=forms.EmailInput(attrs={'class': "personal__input", 'placeholder': "E-mail"}))
+    field2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': "personal__input-password", 'placeholder': "Пароль"}))
+
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = User

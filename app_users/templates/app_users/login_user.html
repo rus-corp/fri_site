@@ -1,0 +1,43 @@
+{% extends 'app_users/_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block middle %}
+    <div class="personal-section">
+        <div class="personal__title">
+            Вход в личный кабинет
+        </div>
+        <form class="personal__form" action="{% url 'login_user' %}" method="post">
+            {% csrf_token %}
+
+            <label class="personal__input-box">
+                {{form.email.label_tag}}
+                {{form.field1}}
+            </label>
+
+            <label class="personal__input-box">
+                
+                {{form.password.label_tag}}
+                {{form.field2}}
+                <span class="personal__input-eye"></span>
+            </label>
+
+
+            <div class="personal__forgot">
+                <a class="personal__forgot-link" href="#">Забыли пароль?</a>
+            </div>
+
+
+            <button class="personal__submit" type="submit">Войти</button>
+        </form>
+
+        <div class="personal__referal-bottom">
+            Фрилансеру для регистрации нужна <a href="#">Реферальная ссылка >>></a> <br>
+            Заказчик регистрируется в момент заказа
+        </div>
+    </div>
+    {% include 'app_users/main_section.html' %}
+    {% include 'app_users/footer.html' %}
+{% endblock %}
+
+

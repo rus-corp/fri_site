@@ -36,14 +36,13 @@ class CustomUser(AbstractBaseUser, MPTTModel, PermissionsMixin):
     email = models.EmailField(_("email"), unique=True, db_index=True)
     email_confirmed = models.BooleanField(_("email подтвержден"), default=False)
 
+
+    username = models.CharField(max_length=255, unique=True, verbose_name=_("имя пользователя"))
     slug = models.SlugField(
-        max_length=55, db_index=True, unique=True, verbose_name=_("имя пользователя")
+        max_length=55, db_index=True, unique=True
     )
     last_name = models.CharField(_("Фамилия"), max_length=55, blank=True, db_index=True)
     first_name = models.CharField(_("Имя"), max_length=55, blank=True, db_index=True)
-    patronymic = models.CharField(
-        _("Отчество"), max_length=55, blank=True, db_index=True
-    )
 
     country = models.CharField(_("Страна"), max_length=55, blank=True, db_index=True)
     address = models.CharField(_("Адрес"), max_length=255, blank=True, db_index=True)

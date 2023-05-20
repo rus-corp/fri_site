@@ -68,56 +68,56 @@ var countryRequesting = false;
             var selector = this.container.find('.country-phone-selected');
             var selected = null;
             var self = this;
-            var searchInput = $('<input type="text" class="country-phone-search" value="">');
-            $(searchInput).appendTo(options);
-            var searchLabel = $('<label class="country-phone-search-label">Введите страну</label>');
-            $(searchLabel).on('click',function(){
-                $(this).hide();
-                $(searchInput).focus();
-            }).insertAfter(searchInput);
-            $(searchLabel).hide().show();
-            $(searchInput).bind('keyup', function(e){
-                if(self.suggestTimeout) {
-                    window.clearTimeout(self.suggestTimeout);
-                }
-                var input = this;
-                var ev = e;
-                self.suggestTimeout = window.setTimeout(function(){
-                    var text = $(input).val().toLowerCase();
-                    self.suggestCountry(text);
-                    if(ev.keyCode == 40) {
-                        self._moveSuggestDown(options);
-                    }
-                    if(ev.keyCode == 38) {
-                        self._moveSuggestUp(options);
-                    }
-                    if(ev.keyCode == 13) {
-                        var hovered = $(options).find('.hovered:visible');
-                        if(hovered.length) {
-                            if(!$(hovered).hasClass('country-phone-search')) {
-                                self.setElementSelected(hovered);
-                                self._toggleSelector();
-                            }
-                        }
-                        ev.stopPropagation();
-                        ev.preventDefault();
-                    }
-                }, 100);
+            // var searchInput = $('<input type="text" class="country-phone-search" value="">');
+            // $(searchInput).appendTo(options);
+            // var searchLabel = $('<label class="country-phone-search-label">Введите страну</label>');
+            // $(searchLabel).on('click',function(){
+            //     $(this).hide();
+            //     $(searchInput).focus();
+            // }).insertAfter(searchInput);
+            // $(searchLabel).hide().show();
+            // $(searchInput).bind('keyup', function(e){
+            //     if(self.suggestTimeout) {
+            //         window.clearTimeout(self.suggestTimeout);
+            //     }
+            //     var input = this;
+            //     var ev = e;
+            //     self.suggestTimeout = window.setTimeout(function(){
+            //         var text = $(input).val().toLowerCase();
+            //         self.suggestCountry(text);
+            //         if(ev.keyCode == 40) {
+            //             self._moveSuggestDown(options);
+            //         }
+            //         if(ev.keyCode == 38) {
+            //             self._moveSuggestUp(options);
+            //         }
+            //         if(ev.keyCode == 13) {
+            //             var hovered = $(options).find('.hovered:visible');
+            //             if(hovered.length) {
+            //                 if(!$(hovered).hasClass('country-phone-search')) {
+            //                     self.setElementSelected(hovered);
+            //                     self._toggleSelector();
+            //                 }
+            //             }
+            //             ev.stopPropagation();
+            //             ev.preventDefault();
+            //         }
+            //     }, 100);
 
-                if($(this).val() == '') {
-                    $(searchLabel).show();
-                }
-                else {
-                    $(searchLabel).hide();
-                }
+            //     if($(this).val() == '') {
+            //         $(searchLabel).show();
+            //     }
+            //     else {
+            //         $(searchLabel).hide();
+            //     }
 
-            }).bind('keypress', function(e){
-                if(e.keyCode == 13) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    return false;
-                }
-            });
+            // }).bind('keypress', function(e){
+            //     if(e.keyCode == 13) {
+            //         e.stopPropagation();
+            //         e.preventDefault();
+            //         return false;
+            //     }
+            // });
 
             for(var i = 0; i < this.data.length; i++) {
                 if(i == 0) {
@@ -128,9 +128,9 @@ var countryRequesting = false;
 
                 var option = $('<div data-phone="'+
                     country.ph + '" data-co="'+ prefCountry.toLowerCase() +'"' +
-                    ' class="country-phone-option"><span>+'+ country.ph +'<img src="blank.gif" class="flag flag-'+
+                    ' class="country-phone-option"><img src="blank.gif" class="flag flag-'+
                     country.co +
-                    '"></span>'+ country.na +'</div>'
+                    '">'+ '<span class="phone-county">'+ country.na +'</span>' + '<span>' + '(+' + country.ph + ')' + '</span></div>'
                 );
                 $(option).appendTo(options);
                 if(this.options.preferCo && (this.options.preferCo != undefined)) {
