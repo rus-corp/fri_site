@@ -137,8 +137,8 @@ def login_user(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, email=cd['email'],
-                                password=cd['password'])
+            user = authenticate(request, email=cd['field1'],
+                                password=cd['field2'])
             if user is not None:
                 if user.is_active:
                     login(request, user)
