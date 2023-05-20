@@ -12,5 +12,8 @@
 		Участник {{frelancer.date_joined|naturaltime}} <br>
     	{{frelancer.slug}}<br>
     	<img src="{{ media }}{{ frelancer.avatar }}" width="50", height="50">
+		{% for sp in spec %}
+			{{sp}}<br>
+        {% endfor %}
 	</body>
 </html>
